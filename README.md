@@ -1,13 +1,11 @@
-# Sensirion I2C STC3X Arduino Library
+# Sensirion I2C STC3x Arduino Library
 
-This is the Sensirion STC3X library for Arduino using the
-modules I2C interface.
+This is the Sensirion STC3x library for Arduino using the I2C interface.
 
-TODO: DRIVER_GENERATOR Add image of sensor / eval kit as images/stc3x.jpg
-[<center><img src="images/stc3x.jpg" width="300px"></center>](TODO: DRIVER_GENERATOR add url to the eval kit)
+[<center><img src="images/Stc3x.png" width="300px"></center>](https://www.sensirion.com/en/environmental-sensors/carbon-dioxide-sensors/co2-sensor-stc31-coming-soon/)
 
-Click [here](TODO: DRIVER_GENERATOR Add url to the eval kit) to learn more about the STC3X
-sensor and the STC3X Evaluation Kit Board.
+Click [here](https://www.sensirion.com/en/environmental-sensors/carbon-dioxide-sensors/co2-sensor-stc31-coming-soon/) to learn more about the STC3x
+sensor.
 
 
 # Installation
@@ -31,14 +29,16 @@ Note: Installation via the Arduino Library Manager is coming soon.
 
 1. Connect the STC3X Sensor to your Arduino board's standard
    I2C bus. Check the pinout of your Arduino board to find the correct pins.
-   The pinout of the STC3X Sensor board can be found in the
-   data sheet.
+   The pinout of the STC3x Sensor can be found in the
+   [datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/12_Thermal_Conductivity/Datasheets/Sensirion_Thermal_Conductivity_Datasheet_STC31_D1.pdf).
+   If you're using the STC3x Evaluation Kit on Flex PCB, the pinout is
 
-	* **VDD** of the SEK-STC3X to the **xV** of your Arduino board TODO: DRIVER_GENERATOR Add correct voltage
+   <center><img src="images/FlexPinout.png" width="500px"></center>
+
+	* **VDD** of the SEK-STC3X to the **3.3V** or **5V** of your Arduino board
 	* **GND** of the SEK-STC3X to the **GND** of your Arduino board
 	* **SCL** of the SEK-STC3X to the **SCL** of your Arduino board
 	* **SDA** of the SEK-STC3X to the **SDA** of your Arduino board
-	* **SEL** of the SEK-STC3X to another **GND** of your Arduino board
 
 2. Open the `exampleUsage` sample project within the Arduino IDE
 
