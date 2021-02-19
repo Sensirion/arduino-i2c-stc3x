@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SensirionI2CStc3x	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setBinaryGas	KEYWORD2
+setRelativeHumidity	KEYWORD2
+setTemperature	KEYWORD2
+setPressure	KEYWORD2
+measureGasConcentration	KEYWORD2
+forcedRecalibration	KEYWORD2
+enableAutomaticSelfCalibration	KEYWORD2
+disableAutomaticSelfCalibration	KEYWORD2
+prepareReadState	KEYWORD2
+setSensorState	KEYWORD2
+getSensorState	KEYWORD2
+applyState	KEYWORD2
+selfTest	KEYWORD2
+enterSleepMode	KEYWORD2
+prepareProductIdentifier	KEYWORD2
+readProductIdentifier	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+stc3x	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
