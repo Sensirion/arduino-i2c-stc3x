@@ -2,7 +2,7 @@
 
 This is the Sensirion STC3x library for Arduino using the I2C interface.
 
-[<center><img src="images/Stc3x.png" width="300px"></center>](https://www.sensirion.com/en/environmental-sensors/carbon-dioxide-sensors/co2-sensor-stc31-coming-soon/)
+[<center><img src="images/STC3x.png" width="500px"></center>](https://www.sensirion.com/en/environmental-sensors/carbon-dioxide-sensors/co2-sensor-stc31-coming-soon/)
 
 Click [here](https://www.sensirion.com/en/environmental-sensors/carbon-dioxide-sensors/co2-sensor-stc31-coming-soon/) to learn more about the STC3x
 sensor.
