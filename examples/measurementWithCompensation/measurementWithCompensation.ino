@@ -97,16 +97,8 @@ void setup() {
         return;
     }
     //
-    // Enable weak smoothing filter for measurement.
-    // This will decrease the signal noise but increase response time.
+    // TODO: Setup SHT4x sensor
     //
-    error = sensor.enableWeakFilter();
-    if (error != NO_ERROR) {
-        Serial.print("Error trying to execute enableWeakFilter(): ");
-        errorToString(error, errorMessage, sizeof errorMessage);
-        Serial.println(errorMessage);
-        return;
-    }
 }
 
 void loop() {
@@ -118,13 +110,21 @@ void loop() {
     //
     delay(1000);
     //
-    // Set default humidity of 50%. Adjust the value to your environment or
-    // use the actual humidity read out from the SHT4x sensor on the STC31-C
-    // evaluation kit.
+    // Read humidity and temperature from external SHT4x sensor and use
+    // it for compensation.
+    //
+    // TODO: read SHT4x sensor and use values for compensation
     //
     error = sensor.setRelativeHumidity(50.0);
     if (error != NO_ERROR) {
         Serial.print("Error trying to execute setRelativeHumidity(): ");
+        errorToString(error, errorMessage, sizeof errorMessage);
+        Serial.println(errorMessage);
+        return;
+    }
+    error = sensor.setTemperature(50.0);
+    if (error != NO_ERROR) {
+        Serial.print("Error trying to execute setTemperature(): ");
         errorToString(error, errorMessage, sizeof errorMessage);
         Serial.println(errorMessage);
         return;
