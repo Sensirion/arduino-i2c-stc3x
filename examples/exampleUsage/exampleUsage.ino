@@ -139,10 +139,10 @@ void loop() {
     //
     // Print CO2 concentration in Vol% and temperature in degree celsius.
     //
-    Serial.print("CO2 concentration = ");
+    Serial.print("CO2_concentration:");
     Serial.print(co2Concentration);
-    Serial.println();
-    Serial.print("Temperature = ");
+    Serial.print(",");
+    Serial.print("Temperature:");
     Serial.print(temperature);
     Serial.println();
 }

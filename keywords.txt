@@ -47,6 +47,8 @@ signalGasConcentration	KEYWORD2
 #######################################
 
 sensor	KEYWORD2
+stc3x_sensor KEYWORD2
+sht4x_sensor KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

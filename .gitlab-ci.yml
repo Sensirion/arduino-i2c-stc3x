@@ -12,6 +12,7 @@ compile_test:
     tags: [docker, linux]
     before_script:
         - rm -rf ../sensirion-core-arduino-library
+        - rm -rf ../sensirion-i2c-sht4x
     script:
         - git clone --depth 1 --branch 0.5.2 https://github.com/Sensirion/arduino-core.git ../sensirion-core-arduino-library
         - arduino-cli compile --libraries=".." --warnings all --fqbn arduino:samd:mkrzero ./examples/exampleUsage/exampleUsage.ino
@@ -28,6 +29,7 @@ compile_test:
         - arduino-cli compile --libraries=".." --warnings all --fqbn esp32:esp32:esp32 ./examples/exampleUsage/exampleUsage.ino
         - arduino-cli compile --libraries=".." --warnings all --fqbn esp8266:esp8266:generic ./examples/exampleUsage/exampleUsage.ino
 
+        - git clone --depth 1 --branch 1.0.0 https://github.com/Sensirion/arduino-i2c-sht4x.git ../sensirion-i2c-sht4x
         - arduino-cli compile --libraries=".." --warnings all --fqbn arduino:samd:mkrzero ./examples/measurementWithCompensation/measurementWithCompensation.ino
         - arduino-cli compile --libraries=".." --warnings all --fqbn arduino:avr:mega ./examples/measurementWithCompensation/measurementWithCompensation.ino
         - arduino-cli compile --libraries=".." --warnings all --fqbn arduino:avr:nano ./examples/measurementWithCompensation/measurementWithCompensation.ino

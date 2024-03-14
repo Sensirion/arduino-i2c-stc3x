@@ -150,6 +150,11 @@ int16_t SensirionI2cStc3x::setBinaryGas(uint16_t binaryGas) {
         return localError;
     }
     delay(1);
+    if (binaryGas < 0x10) {
+        _measurement_delay = STC31_MEASUREMENT_DELAY_LOW;
+    } else {
+        _measurement_delay = STC31_MEASUREMENT_DELAY_HIGH;
+    }
     return localError;
 }
 
@@ -220,7 +225,7 @@ SensirionI2cStc3x::measureGasConcentrationRaw(uint16_t& gasTicks,
     if (localError != NO_ERROR) {
         return localError;
     }
-    delay(70);
+    delay(_measurement_delay);
     SensirionI2CRxFrame rxFrame(buffer_ptr, 6);
     localError = SensirionI2CCommunication::receiveFrame(_i2cAddress, 6,
                                                          rxFrame, *_i2cBus);
