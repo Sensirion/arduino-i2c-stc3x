@@ -6,32 +6,49 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-SensirionI2CStc3x	KEYWORD1
+SensirionI2cStc3x	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-setBinaryGas	KEYWORD2
+
 setRelativeHumidity	KEYWORD2
 setTemperature	KEYWORD2
-setPressure	KEYWORD2
 measureGasConcentration	KEYWORD2
+getSensorState	KEYWORD2
+setSensorState	KEYWORD2
+getProductId	KEYWORD2
+setBinaryGas	KEYWORD2
+setRelativeHumidityRaw	KEYWORD2
+setTemperatureRaw	KEYWORD2
+setPressure	KEYWORD2
+measureGasConcentrationRaw	KEYWORD2
 forcedRecalibration	KEYWORD2
 enableAutomaticSelfCalibration	KEYWORD2
 disableAutomaticSelfCalibration	KEYWORD2
 prepareReadState	KEYWORD2
-setSensorState	KEYWORD2
-getSensorState	KEYWORD2
+readSensorState	KEYWORD2
+writeSensorState	KEYWORD2
 applyState	KEYWORD2
 selfTest	KEYWORD2
-enterSleepMode	KEYWORD2
 prepareProductIdentifier	KEYWORD2
 readProductIdentifier	KEYWORD2
+enterSleepMode	KEYWORD2
+exitSleepMode	KEYWORD2
+enableWeakFilter	KEYWORD2
+disableWeakFilter	KEYWORD2
+enableStrongFilter	KEYWORD2
+disableStrongFilter	KEYWORD2
+signalTemperature	KEYWORD2
+signalGasConcentration	KEYWORD2
+
 #######################################
 # Instances (KEYWORD2)
 #######################################
 
-stc3x	KEYWORD2
+sensor	KEYWORD2
+stc3x_sensor KEYWORD2
+sht4x_sensor KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

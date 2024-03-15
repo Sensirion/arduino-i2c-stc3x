@@ -35,7 +35,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
+/*
+ * For this example you need to install the SHT4x library
+ * 'Sensirion I2C SHT4X'.
+ * Please find all relevant instructions here:
+ * https://github.com/Sensirion/arduino-i2c-sht4x
+ */
+
 #include <Arduino.h>
+#include <SensirionI2CSht4x.h>
 #include <SensirionI2cStc3x.h>
 #include <Wire.h>
 
@@ -46,7 +55,8 @@
 #endif
 #define NO_ERROR 0
 
-SensirionI2cStc3x sensor;
+SensirionI2cStc3x stc3x_sensor;
+SensirionI2CSht4x sht4x_sensor;
 
 static char errorMessage[64];
 static int16_t error;
@@ -64,45 +74,52 @@ void setup() {
         delay(100);
     }
     Wire.begin();
-    sensor.begin(Wire, STC31_C_I2C_ADDR_29);
+    stc3x_sensor.begin(Wire, STC31_C_I2C_ADDR_29);
+    sht4x_sensor.begin(Wire, SHT40_I2C_ADDR_44);
 
-    uint32_t productId = 0;
-    uint64_t serialNumber = 0;
+    uint32_t stc3xProductId = 0;
+    uint64_t stc3xSerialNumber = 0;
+    uint32_t sht4xSerialNumber = 0;
+
+    // make sure sensor is ready after power up.
     delay(14);
+
+    // Output SHT4x serial number
+    error = sht4x_sensor.serialNumber(sht4xSerialNumber);
+    if (error != NO_ERROR) {
+        Serial.print("Error trying to execute serialNumber(): ");
+        errorToString(error, errorMessage, sizeof errorMessage);
+        Serial.println(errorMessage);
+        return;
+    }
+    Serial.print("SHT4x Seiral Number = ");
+    Serial.print(sht4xSerialNumber);
+    Serial.println();
+
     //
     // Output the product identifier and serial number
     //
-    error = sensor.getProductId(productId, serialNumber);
+    error = stc3x_sensor.getProductId(stc3xProductId, stc3xSerialNumber);
     if (error != NO_ERROR) {
         Serial.print("Error trying to execute getProductId(): ");
         errorToString(error, errorMessage, sizeof errorMessage);
         Serial.println(errorMessage);
         return;
     }
-    Serial.print("Product id = ");
-    Serial.print(productId);
+    Serial.print("STC3x Product id = ");
+    Serial.print(stc3xProductId);
     Serial.println();
-    Serial.print("Serial Number = ");
-    PrintUint64(serialNumber);
+    Serial.print("STC3x Serial Number = ");
+    PrintUint64(stc3xSerialNumber);
     Serial.println();
+
     //
     // Measure STC31-C CO2 in air in range 0% - 40%
     // or STC31 CO2 in air in range 0% - 25%
     //
-    error = sensor.setBinaryGas(19);
+    error = stc3x_sensor.setBinaryGas(19);
     if (error != NO_ERROR) {
         Serial.print("Error trying to execute setBinaryGas(): ");
-        errorToString(error, errorMessage, sizeof errorMessage);
-        Serial.println(errorMessage);
-        return;
-    }
-    //
-    // Enable weak smoothing filter for measurement.
-    // This will decrease the signal noise but increase response time.
-    //
-    error = sensor.enableWeakFilter();
-    if (error != NO_ERROR) {
-        Serial.print("Error trying to execute enableWeakFilter(): ");
         errorToString(error, errorMessage, sizeof errorMessage);
         Serial.println(errorMessage);
         return;
@@ -111,25 +128,46 @@ void setup() {
 
 void loop() {
 
-    float co2Concentration = 0.0;
-    float temperature = 0.0;
+    float stc3xCo2Concentration = 0.0;
+    float stc3xTemperature = 0.0;
+    float sht4xTemperature = 0.0;
+    float sht4xRelativeHumidity = 0.0;
+
     //
     // Slow down the sampling to 1Hz
     //
     delay(1000);
+
     //
-    // Set default humidity of 50%. Adjust the value to your environment or
-    // use the actual humidity read out from the SHT4x sensor on the STC31-C
-    // evaluation kit.
-    //
-    error = sensor.setRelativeHumidity(50.0);
+    // Read humidity and temperature from external SHT4x sensor and use
+    // it for compensation.
+    error = sht4x_sensor.measureHighPrecision(sht4xTemperature,
+                                              sht4xRelativeHumidity);
+    if (error != NO_ERROR) {
+        Serial.print("Error trying to execute measureLowestPrecision(): ");
+        errorToString(error, errorMessage, sizeof errorMessage);
+        Serial.println(errorMessage);
+        return;
+    }
+
+    error = stc3x_sensor.setRelativeHumidity(sht4xRelativeHumidity);
     if (error != NO_ERROR) {
         Serial.print("Error trying to execute setRelativeHumidity(): ");
         errorToString(error, errorMessage, sizeof errorMessage);
         Serial.println(errorMessage);
         return;
     }
-    error = sensor.measureGasConcentration(co2Concentration, temperature);
+    error = stc3x_sensor.setTemperature(sht4xTemperature);
+    if (error != NO_ERROR) {
+        Serial.print("Error trying to execute setTemperature(): ");
+        errorToString(error, errorMessage, sizeof errorMessage);
+        Serial.println(errorMessage);
+        return;
+    }
+
+    // Measure gas concentration
+    error = stc3x_sensor.measureGasConcentration(stc3xCo2Concentration,
+                                                 stc3xTemperature);
     if (error != NO_ERROR) {
         Serial.print("Error trying to execute measureGasConcentration(): ");
         errorToString(error, errorMessage, sizeof errorMessage);
@@ -140,9 +178,9 @@ void loop() {
     // Print CO2 concentration in Vol% and temperature in degree celsius.
     //
     Serial.print("CO2_concentration:");
-    Serial.print(co2Concentration);
+    Serial.print(stc3xCo2Concentration);
     Serial.print(",");
     Serial.print("Temperature:");
-    Serial.print(temperature);
+    Serial.print(stc3xTemperature);
     Serial.println();
 }
