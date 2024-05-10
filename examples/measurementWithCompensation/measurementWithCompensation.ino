@@ -44,7 +44,7 @@
  */
 
 #include <Arduino.h>
-#include <SensirionI2CSht4x.h>
+#include <SensirionI2cSht4x.h>
 #include <SensirionI2cStc3x.h>
 #include <Wire.h>
 
@@ -56,7 +56,7 @@
 #define NO_ERROR 0
 
 SensirionI2cStc3x stc3x_sensor;
-SensirionI2CSht4x sht4x_sensor;
+SensirionI2cSht4x sht4x_sensor;
 
 static char errorMessage[64];
 static int16_t error;
