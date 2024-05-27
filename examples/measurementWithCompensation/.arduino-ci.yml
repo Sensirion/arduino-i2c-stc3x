@@ -1,0 +1,3 @@
+compile:
+  libraries:
+    - "Sensirion I2C SHT4x"
