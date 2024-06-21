@@ -180,7 +180,13 @@ void loop() {
     Serial.print("CO2_concentration:");
     Serial.print(stc3xCo2Concentration);
     Serial.print(",");
-    Serial.print("Temperature:");
+    Serial.print("Temperature_STC3x:");
     Serial.print(stc3xTemperature);
+    Serial.print(",");
+    Serial.print("Temperature_SHT4x:");
+    Serial.print(sht4xTemperature);
+    Serial.print(",");
+    Serial.print("Temperature_Delta:");
+    Serial.print(stc3xTemperature - sht4xTemperature);
     Serial.println();
 }
