@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] 
 
+### Added
+- Serial print of SHT4x temperature and temperature
+  difference between STC3x and SHT4x to compensation
+  example.
+
 ## [1.0.1]
 
 ### Fixed
