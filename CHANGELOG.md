@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] 
 - Fix FRC delay if a binary gas >= 0x10 is used.
 - Use 110ms measurement delay as default.
+- Add force recalibration (FRC) example
 
 ### Added
 - Serial print of SHT4x temperature and temperature
