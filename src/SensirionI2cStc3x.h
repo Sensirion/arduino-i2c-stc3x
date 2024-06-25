@@ -635,7 +635,7 @@ class SensirionI2cStc3x {
   private:
     TwoWire* _i2cBus = nullptr;
     uint8_t _i2cAddress = 0;
-    uint16_t _measurement_delay = STC31_MEASUREMENT_DELAY_LOW;
+    uint16_t _measurement_delay = STC31_MEASUREMENT_DELAY_HIGH;
 };
 
 #endif  // SENSIRIONI2CSTC3X_H

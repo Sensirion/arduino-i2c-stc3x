@@ -252,7 +252,7 @@ SensirionI2cStc3x::forcedRecalibration(uint16_t referenceConcentration) {
     if (localError != NO_ERROR) {
         return localError;
     }
-    delay(66);
+    delay(_measurement_delay);
     return localError;
 }
 
