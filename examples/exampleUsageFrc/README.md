@@ -10,7 +10,7 @@ cylce, those states need to be restored.
 The post-soldering FRC procedure is documented in the paragraph 5 of the
 [Desing guide](https://sensirion.com/resource/application_note/design_guide_STC31-C)
 
-All used commands and formulas used in this exampel can be found in the
+All used commands and formulas used in this example can be found in the
 [Datasheet](https://sensirion.com/resource/datasheet/stc31-c)
 
 ## Post-soldering Forced Recalibration Process
