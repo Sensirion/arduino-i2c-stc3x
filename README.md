@@ -186,6 +186,18 @@ You will find pinout schematics for recommended board models below:
    Plotter` via the `Tools` menu to observe the measurement values. Note that
    the `Baud Rate` in the used tool has to be set to `115200 baud`.
 
+### Additional Examples
+
+#### Forced Recalibration
+
+There is a detailed explenation, see [Documentation](examples/exampleUsageFrc/README.md).
+
+To run the example, open the `exampleUsageFrc` sample project within the Arduino IDE.
+
+#### Example for mesaurement with RHT Compenstation
+
+To run the example, open the `measurementWithCompenstation` sample project within the Arduino IDE.
+
 ## Contributing
 
 **Contributions are welcome!**
