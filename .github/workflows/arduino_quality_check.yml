@@ -13,4 +13,5 @@ jobs:
     uses: sensirion/.github/.github/workflows/driver.arduino.check.yml@main
     with:
       expect-arduino-examples: true
+      dependency-list: '[{"name": "Sensirion Core"}, {"source-path": "./"}, {"name": "Sensirion I2C SHT4x"}]'
       lint-lib-manager-check: update
